@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('discussions_id')->nullable()->index('fk_replies_to_discussions');
+            $table->foreignId('user_id')->nullable()->index('fk_replies_to_users');
+            $table->longText('content');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

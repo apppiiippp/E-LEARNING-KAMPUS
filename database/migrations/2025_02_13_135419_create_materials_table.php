@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('courses_id')->nullable()->index('fk_materials_to_courses');
+            $table->string('title');
+            $table->string('file_path');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

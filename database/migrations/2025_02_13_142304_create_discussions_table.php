@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('courses_id')->nullable()->index('fk_discussions_to_courses');
+            $table->foreignId('user_id')->nullable()->index('fk_discussions_to_users');
+            $table->longText('content');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

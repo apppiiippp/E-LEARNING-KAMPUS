@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('course_student', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('courses_id')->nullable()->index('fk_course_student_to_courses');
+            $table->foreignId('students_id')->nullable()->index('fk_course_student_to_users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
